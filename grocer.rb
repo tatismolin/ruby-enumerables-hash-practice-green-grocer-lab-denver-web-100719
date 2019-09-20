@@ -1,5 +1,7 @@
 def consolidate_cart(cart)
   # code here
+  cart = cart[array.collect { |item| [item, ""] } ]
+
 end
 
 def apply_coupons(cart, coupons)
@@ -9,6 +11,7 @@ end
 def apply_clearance(cart)
   # code here
 end
+
 
 def checkout(cart, coupons)
   # code here
