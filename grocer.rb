@@ -13,30 +13,22 @@ def consolidate_cart(cart)
 end
 
 def apply_coupons(cart, coupons)
-  hash = cart
-  coupons.each do |coupon_hash|
-    # add coupon to cart
-    item = coupon_hash[:item]
-
-    if hash[item].nil? && hash[item][:count] >= coupon_hash[:num]
-      temp = {"#{item} W/COUPON" => {
-        :price => coupon_hash[:cost],
-        :clearance => hash[item][:clearance],
-        :count => 1
-        }
-      }
-
-      if hash["#{item} W/COUPON"].nil?
-        hash.merge!(temp)
-      else
-        hash["#{item} W/COUPON"][:count] += 1
-        #hash["#{item} W/COUPON"][:price] += coupon_hash[:cost]
+  new_cart = {}
+  cart.each do |grocery, info|
+    coupons.each do |coupon|
+      if grocery == coupon[:item] && info[:count] >= coupon[:num]
+        cart[grocery][:count] = cart[grocery][:count] - coupon[:num]
+        if new_cart[grocery + " W/COUPON"]
+          new_cart[grocery + " W/COUPON"][:count] += 1
+        else
+          new_cart[grocery + " W/COUPON"] = {:price => coupon[:cost], :clearance => cart[grocery][:clearance], :count => 1}
+        end
       end
-
-      hash[item][:count] -= coupon_hash[:num]
     end
+    new_cart[grocery] = info
+
   end
-  hash
+  new_cart
 end
 
 def apply_clearance(cart)
