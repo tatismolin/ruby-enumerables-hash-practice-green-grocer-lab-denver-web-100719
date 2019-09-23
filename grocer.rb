@@ -32,6 +32,9 @@ def apply_coupons(cart, coupons)
         hash["#{item} W/COUPON"][:count] += 1
         #hash["#{item} W/COUPON"][:price] += coupon_hash[:cost]
       end
+
+      hash[item][:count] += coupon_hash[:num]
+    end
   end
   hash
 end
