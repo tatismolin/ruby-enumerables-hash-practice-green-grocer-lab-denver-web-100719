@@ -1,4 +1,4 @@
-ef consolidate_cart(cart)
+def consolidate_cart(cart)
   # code here
   cart_hash = {}
   cart.each do |cart_item|
