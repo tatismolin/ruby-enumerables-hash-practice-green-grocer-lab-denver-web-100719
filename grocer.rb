@@ -10,8 +10,8 @@ def consolidate_cart(cart)
       end
     end
   end
-  return con_hash
-end	end
+   con_hash
+end
 
 
 def apply_coupons(cart, coupons)
@@ -28,8 +28,9 @@ def apply_coupons(cart, coupons)
       end
     end
   end
-  return cart_cons
-end	end
+   cart_cons
+end
+
 
 
 def apply_clearance(cart)
@@ -40,8 +41,9 @@ def apply_clearance(cart)
       attribute[:price] = (attribute[:price]*0.8).round(2)
     end
   end
-  return cart
-end	end
+   cart
+end
+
 
 
 def checkout(cart, coupons)
@@ -53,4 +55,5 @@ def checkout(cart, coupons)
   cart_check.each do |item, attribute|
     total += attribute[:count] * attribute[:price]
   end
-  return total = total > 100 ? (total*0.9).round(2) : total
+   total = total > 100 ? (total*0.9).round(2) : total
+end
